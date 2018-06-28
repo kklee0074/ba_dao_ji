@@ -433,20 +433,9 @@ h1 {
 			
 			});
 			
-			//var json = (function () {
-				var json = null;
-				$.ajax({
-					'async': false,
-					'global': false,
-					'url': "json/story.json",
-					'dataType': "json",
-					'success': function (data) {
-						json = data;
-						alert(json);
-					}
-				});
-				//return json;
-			//})(); 					
+			var jqxhr = $.getJSON( "json/story.json", function() {
+			  console.log( "success" );
+			})						
 		});
 		
 		var intervalQuery;		

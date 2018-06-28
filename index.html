@@ -443,10 +443,10 @@ h1 {
 				var temp = JSON.parse(data.responseText);
 				console.log(temp);
 				alert(temp);
-			      //$.each( data.story, function( i, item ) {
-				//      if(item.part == 2)
-				//	      alert(item.content);
-			      //});
+			      $.each( temp.story, function( i, item ) {
+				      if(item.part == 2)
+					      alert(item.content);
+			      });
 			});			
 		});
 		

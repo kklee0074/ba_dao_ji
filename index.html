@@ -440,7 +440,7 @@ h1 {
 			jqxhr.complete(function(data) {
 			  	console.log( "second complete" );
 				console.log(data);
-				var temp = JSON.parse(data);
+				var temp = JSON.parse(data.responseText);
 				console.log(temp);
 				alert(temp);
 			      //$.each( data.story, function( i, item ) {

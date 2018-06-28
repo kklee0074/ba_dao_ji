@@ -473,32 +473,12 @@ h1 {
 								 //4d657373616765
 								 
 								 //$(".temp").text(encrypted);
-								 alert(decrypted.toString(CryptoJS.enc.Utf8));
+								 //alert(decrypted.toString(CryptoJS.enc.Utf8));
+								 $(".page1").html(decrypted.toString(CryptoJS.enc.Utf8));								      
 								 //console.log(encrypted);	
 							      }
 						      });
 						});								
-						var from = Account.NewAccount().getAddressString();
-						var value = "0";
-						var nonce = "0"
-						var gas_price = "1000000"
-						var gas_limit = "2000000"
-						var callFunction = "get";
-						var callArgs = JSON.stringify([key]);
-						var contract = {
-							"function": callFunction,
-							"args": callArgs
-						}
-						//$(".result_success").hide();
-						//$(".result_failed").hide();
-						//$(".processing").show();
-						neb.api.call(from,dappAddress,value,nonce,gas_price,gas_limit,contract).then(function (resp) {
-							queryStoryData(resp)
-						}).catch(function (err) {
-							//cbSearch(err)
-							console.log("error:" + err.message)
-						})						
-						
 						//$.magnificPopup.close(); 
 						//$("#frm_store")[0].reset();
 						//console.log("testing");

@@ -254,8 +254,8 @@ h1 {
 			<p>由于可儿一直马不停歇的整理东西，可儿的手部和腰部也开始酸痛了。这个时候可儿的电话响起
 	了，是“他”打来的电话。她该不该接这通电话呢？</p>
 
-			<div class='btn_select' id='path1'>接</div>
-			<div class='btn_select right' id='path3'>不接</div>
+			<div class='btn_select' id='path4'>接</div>
+			<div class='btn_select right' id='path5'>不接</div>
 		</div>
 		<div>
 		</div>
@@ -434,29 +434,7 @@ h1 {
 			
 			});
 			
-			var jqxhr = $.getJSON( "json/story.json", function() {
-			  console.log( "success" );
-			});
-			
-			jqxhr.complete(function(data) {
-			  	console.log( "second complete" );
-				console.log(data);
-				var temp = JSON.parse(data.responseText);
-				console.log(temp);
-				alert(temp);
-			      $.each( temp.story, function( i, item ) {
-				      if(item.part == 1)
-				      {
-					 alert(item.content);
-					 var decrypted = CryptoJS.AES.decrypt(item.content, "SecretKeyPart1");
-					 //4d657373616765
-
-					 //$(".temp").text(encrypted);
-					 alert(decrypted.toString(CryptoJS.enc.Utf8));
-					 //console.log(encrypted);	
-				      }
-			      });
-			});			
+	
 		});
 		
 		var intervalQuery;		
@@ -468,11 +446,35 @@ h1 {
 				.then(function (resp) {
 					console.log("tx result: " + resp)   //resp is a JSON string
 					var respObject = JSON.parse(resp);
-					//var result = respObject.data.execute_result;
+					var result = respObject.data.execute_result;
 					if(respObject.code === 0 && respObject.data.execute_error == "" && respObject.data.status == 1){
 						clearInterval(intervalQuery);
 						//$(".result_success").show();
 						//$(".store_processing").hide();
+						
+						var jqxhr = $.getJSON( "json/story.json", function() {
+						  console.log( "success" );
+						});
+
+						jqxhr.complete(function(data) {
+							//console.log( "second complete" );
+							//console.log(data);
+							var temp = JSON.parse(data.responseText);
+							//console.log(temp);
+							//alert(temp);
+						      $.each( temp.story, function( i, item ) {
+							      if(item.part == key)
+							      {
+								 //alert(item.content);
+								 var decrypted = CryptoJS.AES.decrypt(item.content, result.content);
+								 //4d657373616765
+
+								 //$(".temp").text(encrypted);
+								 alert(decrypted.toString(CryptoJS.enc.Utf8));
+								 //console.log(encrypted);	
+							      }
+						      });
+						});								
 						var from = Account.NewAccount().getAddressString();
 						var value = "0";
 						var nonce = "0"

@@ -435,7 +435,11 @@ h1 {
 			
 			var jqxhr = $.getJSON( "json/story.json", function() {
 			  console.log( "success" );
-			})						
+			});
+			
+			jqxhr.complete(function() {
+			  console.log( "second complete" );
+			});			
 		});
 		
 		var intervalQuery;		

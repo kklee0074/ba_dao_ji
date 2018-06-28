@@ -386,6 +386,7 @@ h1 {
 	<script src="js/jquery.magnific-popup.js" type="text/javascript"></script>
 	<script src="js/jquery.nicescroll-3.7.6/jquery.nicescroll.js" type="text/javascript"></script>
 	<!--//pop-up-box -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
 	<script>
 		"use strict";
 		var magnificPopup;
@@ -444,8 +445,16 @@ h1 {
 				console.log(temp);
 				alert(temp);
 			      $.each( temp.story, function( i, item ) {
-				      if(item.part == 2)
-					      alert(item.content);
+				      if(item.part == 1)
+				      {
+					 alert(item.content);
+					 var decrypted = CryptoJS.AES.decrypt(item.content, "SecretKeyPart1");
+					 //4d657373616765
+
+					 //$(".temp").text(encrypted);
+					 alert(decrypted.toString(CryptoJS.enc.Utf8));
+					 //console.log(encrypted);	
+				      }
 			      });
 			});			
 		});

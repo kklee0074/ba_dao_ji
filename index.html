@@ -439,10 +439,14 @@ h1 {
 			
 			jqxhr.complete(function(data) {
 			  	console.log( "second complete" );
-			      $.each( data.story, function( i, item ) {
-				      if(item.part == 2)
-					      alert(item.content);
-			      });
+				console.log(data);
+				var temp = JSON.parse(data);
+				console.log(temp);
+				alert(temp);
+			      //$.each( data.story, function( i, item ) {
+				//      if(item.part == 2)
+				//	      alert(item.content);
+			      //});
 			});			
 		});
 		

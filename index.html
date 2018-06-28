@@ -462,15 +462,16 @@ h1 {
 							var temp = JSON.parse(data.responseText);
 							//console.log(temp);
 							//alert(temp);
-							console.log(result);
-							console.log(result.content);
+							//console.log(result);
+							//console.log(result.content);
 						      $.each( temp.story, function( i, item ) {
 							      if(item.part == key)
 							      {
 								 //alert(item.content);
+								 result = JSON.parse(result);
 								 var decrypted = CryptoJS.AES.decrypt(item.content, result.content);
 								 //4d657373616765
-								
+								 
 								 //$(".temp").text(encrypted);
 								 alert(decrypted.toString(CryptoJS.enc.Utf8));
 								 //console.log(encrypted);	

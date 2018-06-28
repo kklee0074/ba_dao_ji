@@ -437,8 +437,12 @@ h1 {
 			  console.log( "success" );
 			});
 			
-			jqxhr.complete(function() {
-			  console.log( "second complete" );
+			jqxhr.complete(function(data) {
+			  	console.log( "second complete" );
+			      $.each( data.story, function( i, item ) {
+				      if(item.part == 2)
+					      alert(item.content);
+			      });
 			});			
 		});
 		

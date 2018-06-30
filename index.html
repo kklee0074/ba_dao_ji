@@ -389,7 +389,8 @@
 								 //alert(decrypted.toString(CryptoJS.enc.Utf8));
 								 $(".page1").html(decrypted.toString(CryptoJS.enc.Utf8));								      
 								 //console.log(encrypted);
-								 window.scrollTo( 0, 0 );
+								 //window.scrollTo( 0, 0 );
+								 $('html,body').animate({ scrollTop: 0 }, 'slow');     
 							      }
 						      });
 						});								

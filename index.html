@@ -324,8 +324,8 @@
 		var key;				
 		$(document).ready(function() {
 			//alert($(".page1").text());
-
-			$(".page1 .btn_select").on( "click", function(e) {
+			//$(".page1 .btn_select").on( "click", function(e) {			
+			$(".page1" ).on( "click", ".btn_select", function(e) {
 				e.preventDefault();			
 				var temp = $(this).attr("id");
 				key = temp.replace("path", "");

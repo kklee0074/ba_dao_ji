@@ -355,32 +355,38 @@
 				.then(function (resp) {
 					console.log("tx result: " + resp)   //resp is a JSON string
 					var respObject = JSON.parse(resp);
-					//var result = respObject.data.execute_result;
+					var result = respObject.data.execute_result;
 					if(respObject.code === 0 && respObject.data.execute_error == "" && respObject.data.status == 1){
 						clearInterval(intervalQuery);
 						//$(".result_success").show();
 						//$(".store_processing").hide();
-						var from = Account.NewAccount().getAddressString();
-						var value = "0";
-						var nonce = "0"
-						var gas_price = "1000000"
-						var gas_limit = "2000000"
-						var callFunction = "get";
-						var callArgs = JSON.stringify([key]);
-						var contract = {
-							"function": callFunction,
-							"args": callArgs
-						}
-						//$(".result_success").hide();
-						//$(".result_failed").hide();
-						//$(".processing").show();
-						neb.api.call(from,dappAddress,value,nonce,gas_price,gas_limit,contract).then(function (resp) {
-							queryStoryData(resp)
-						}).catch(function (err) {
-							//cbSearch(err)
-							console.log("error:" + err.message)
-						})						
 						
+						var jqxhr = $.getJSON( "json/story.json", function() {
+						  console.log( "success" );
+						});
+						jqxhr.complete(function(data) {
+							//console.log( "second complete" );
+							//console.log(data);
+							var temp = JSON.parse(data.responseText);
+							//console.log(temp);
+							//alert(temp);
+							//console.log(result);
+							//console.log(result.content);
+						      $.each( temp.story, function( i, item ) {
+							      if(item.part == key)
+							      {
+								 //alert(item.content);
+								 result = JSON.parse(result);
+								 var decrypted = CryptoJS.AES.decrypt(item.content, result.content);
+								 //4d657373616765
+								 
+								 //$(".temp").text(encrypted);
+								 //alert(decrypted.toString(CryptoJS.enc.Utf8));
+								 $(".page1").html(decrypted.toString(CryptoJS.enc.Utf8));								      
+								 //console.log(encrypted);	
+							      }
+						      });
+						});								
 						//$.magnificPopup.close(); 
 						//$("#frm_store")[0].reset();
 						//console.log("testing");
